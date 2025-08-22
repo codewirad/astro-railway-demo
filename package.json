@@ -5,13 +5,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "start": "serve -s dist -l $PORT"
+    "start": "node dist/server/entry.mjs"
   },
   "dependencies": {
-    "astro": "^5.13.2",
-    "serve": "^14.2.0"
+    "@astrojs/node": "^9.4.3",
+    "astro": "^5.13.2"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=18.0.0"
   }
