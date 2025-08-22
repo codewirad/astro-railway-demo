@@ -1,6 +1,7 @@
 # Use official Node.js image
-FROM node:20-alpine AS builder
+FROM caddy:alpine 
 
+RUN apk update & apk add --no-cache nodejs npm
 # Set working directory
 WORKDIR /app
 
@@ -8,23 +9,20 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# Copy source code and build
+# Copy all source code
 COPY . .
+
+# Build Astro project (outputs to /app/dist)
 RUN npm run build
 
-# Production image
-FROM node:20-alpine
-WORKDIR /app
 
-# Install only production dependencies
-COPY package*.json ./
-RUN npm install --omit=dev
+# Stage 2: Serve with Caddy
+FROM caddy:alpine AS runner
 
-# Copy built files from builder
-COPY --from=builder /app/dist ./dist
+# Copy built static site into Caddy's html dir
+COPY --from=builder /app/dist /usr/share/caddy
 
-# Astro’s default port
-EXPOSE 4321
+# Expose port 80 (Caddy default)
+EXPOSE 80
 
-# Run preview server
-CMD ["npx", "astro", "preview", "--host", "0.0.0.0", "--port", "4321"]
+# Use Caddy’s built-in CMD
