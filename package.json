@@ -1,18 +1,18 @@
 {
-  "name": "astro-railway-demo",
+  "name": "mindful-rebirth",
+  "version": "1.0.0",
   "type": "module",
-  "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro preview --port $PORT --host 0.0.0.0",
     "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "start": "serve -s dist -l $PORT"
   },
   "dependencies": {
-    "astro": "^5.13.2"
+    "astro": "^5.13.2",
+    "serve": "^14.2.0"
   },
+  "devDependencies": {},
   "engines": {
-    "node": "20.x"
+    "node": ">=18.0.0"
   }
 }
