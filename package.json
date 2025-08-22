@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
+    "start": "astro preview --port $PORT",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -12,6 +12,7 @@
   "dependencies": {
     "astro": "^5.13.2"
   },
-  "engines": { "node": "20.x" }
-
+  "engines": {
+    "node": "20.x"
+  }
 }
