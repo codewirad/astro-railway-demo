@@ -1,0 +1,4 @@
+:{&PORT}
+
+root */dist
+file_server
